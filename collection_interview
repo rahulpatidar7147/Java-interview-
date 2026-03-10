@@ -1,0 +1,78 @@
+Collection framework: 
+
+What is collection framework?
+The Java Collections Framework (OCF) is a fundamental part of the Java programming language, providing a set of classes and interfaces for storing and manipulating groups of data.
+The framework offers a range of collection types, including List, Set, and Map, each tailored for different use cases.
+It also provides mechanisms for sorting and comparing data, making it essential for efficiently handling large amounts of information in applications.
+
+Difference between fail-fast and fail-safe Iterators? 
+A Fail-Fast Iterator immediately throws a ConcurrentModificationException if the collection is modified while iterating, because it works directly on the original collection.
+A Fail-Safe Iterator, on the other hand, works on a clone of the collection and therefore doesn’t throw exceptions even when the collection is modified concurrently. Examples: Fail-Fast: ArrayList, HashMap Fail-Safe: CopyOnWriteArrayList, ConcurrentHashMap
+
+Internal working of hashmap
+Internally, a HashMap stores key–value pairs in an array of nodes (buckets). The key’s hashCode() is used to determine the bucket index using (n - 1) & hash. When we call put(), it stores the entry in the corresponding bucket; if another key maps to the same bucket, a collision occurs, and entries are stored in a linked list (or red-black tree in Java 8 for performance). The get() method uses the same hash function to find the bucket and retrieves the value by matching the key.
+
+What is Hashtable?
+A Hashtable is a data structure that stores key–value pairs and uses a hash function to compute an index for fast lookup. It provides constant-time average performance for search, insert, and delete operations.
+
+
+Difference between Hashtable and HashMap?
+Hashtable is thread-safe because it's synchronized and HashMap is not thread-safe because it's non-synchronized. Hashtable does NOT allow null keys or null values and HashMap Allows one null key and multiple null values.
+Hashtable generally slower due to the overhead of synchronization and HashMap is faster because (no overhead of synchronization).
+
+What is ConcurrentHashMap?
+ConcurrentHashMap is a thread-safe version of HashMap that allows concurrent read and write operations without locking the entire map.No null keys or values allowed in ConcurrentHashMap.
+
+Difference between ConcurrentHashMap and SynchronizedHashMap?
+Both are thread-safe.
+ConcurrentHashMap uses fine-grained locking and Synchronized HashMap locks the entire map on every operation.
+ConcurrentHashMap does not allow null keys or values and Synchronized HashMap allows one null key and multiple null values.
+ConcurrentHashMap is fail-safe and Synchronized HashMap is fail-fast (may throw ConcurrentModificationException).
+
+What is the difference between WeakHashMap and IdentityHashMap in Java?
+WeakHashMap: Uses weak references for keys. 
+Entries are removed automatically when keys are no longer in use (GC-ed).
+Uses .equals() and .hashCode() for key comparison.
+Used for memory-sensitive caches.
+IdentityHashMap:Uses reference equality (==) for comparing keys.
+Keys are not GC-ed unless explicitly removed.
+Allows duplicate "equal" keys if they're different objects.
+Used when object identity matters over logical equality.
+
+List
+A List is an ordered collection that allows duplicates.
+Elements can be accessed by their position (index).
+Common Implementations: ArrayList, LinkedList.
+
+Set
+A Set is a collection that does not allow duplicate elements and does not guarantee order.
+Common Implementations: HashSet, LinkedHashSet, TreeSet.
+Map
+A Map is a collection that maps keys to values, where each key is unique but values can be duplicated.
+Common Implementations: HashMap, TreeMap, LinkedHashMap.
+
+How is an ArrayList different from a LinkedList?
+
+Comparable is used to define the natural or default ordering of objects, so a class must implement the Comparable interface and override the compareTo() method. This approach supports only one sorting sequence and does not require any changes at the client side, as methods like Arrays.sort() and Collections.sort() automatically use the compareTo() method. The Comparable interface belongs to the java.lang package.
+On the other hand, Comparator is used when multiple or custom sorting orders are required. It does not require any modification to the original class; instead, the sorting logic is written in a separate Comparator class using the compare() method. The Comparator interface belongs to the java.util package, and the client must explicitly provide the Comparator while sorting. In short, Comparable is suitable for defining a class’s natural ordering, whereas Comparator is preferred when flexible or multiple sorting strategies are needed.
+How is an ArrayList different from a LinkedList?
+
+
+Why would you choose a ConcurrentHashMap over a HashTable?
+ConcurrentHashMap is designed for concurrent access, offering better performance than HashTable in a multithreaded environment by using locks at a more granular level.
+
+How does the HashMap handle collisions?
+HashMap uses chaining to handle collisions, where each bucket contains a linked list of entries with the same hash code. In Java 8, a tree structure replaces the linked list for large buckets to improve performance.
+
+Can you explain the concept of a backed collection in Java?
+A backed collection is a collection that reflects changes made to another collection.
+For instance, subList() in an ArrayList is a backed collection.
+
+When would you use a Weak HashMap?
+Use WeakHashMap for memory-sensitive caches, as entries are removed automatically when keys are no longer referenced.
+
+What is a NavigableMap, and how does it work?
+NavigableMap extends SortedMap and provides navigation methods like lowerKey(), floorKey(), etc., for retrieving keys based on proximity.
+How does a Priority Queue order its elements?
+A PriorityQueue orders elements according to natural order or a custom comparator, with the highest priority at the head of the queue.
+
