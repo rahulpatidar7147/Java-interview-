@@ -1,0 +1,61 @@
+Multithreading : 
+
+Difference between synchronised block and lock object in JAVA
+Synchronized Blocks: A synchronized block is a section of code that is executed by only one thread at a time.
+Lock Objects: Lock objects are another way to achieve locking in Java. Lock objects provide a more flexible way of controlling the execution of multiple threads than synchronized blocks. Lock objects can be used to create custom locking mechanisms and support more advanced features, such as timed waits and interruptible locks.
+
+public void doSomething() {
+synchronized (this) {
+// code that needs to be executed by only one thread at a time
+}
+}
+
+Lock lock = new ReentrantLock();
+
+public void doSomething() {
+lock.lock();
+try {
+// code that needs to be executed by only one thread at a time
+} finally {
+lock.unlock();
+}
+}
+
+Both synchronized blocks and Lock objects provide a way to control the execution of multiple threads in a Java program. Synchronized blocks are easier to use, but Lock objects provide more flexibility and features.
+
+
+Daemon Threads:
+— a low priority thread that run in the background
+— a daemon thread are terminated by the JVM when all other worker thread finish execution.
+
+SOLID is a set of object-oriented design principles that help in building scalable, maintainable, and loosely coupled Java applications.
+Single Responsibility Principle (SRP) : A class should have only one responsibility and one reason to change.
+Open/Closed Principle (OCP) : Classes should be open for extension but closed for modification.
+Liskov Substitution Principle (LSP) : Subclasses should be replaceable for their parent classes without breaking functionality.
+Interface Segregation Principle (ISP) : Interfaces should be small and client-specific, not large and generic.
+Dependency Inversion Principle (DIP) : High-level modules should depend on abstractions, not concrete implementations.
+
+What is a JWT?
+JWT (JSON Web Token) is a compact, URL-safe token used for stateless authentication and authorization, especially in REST APIs.
+A JWT has 3 parts, separated by dots “Header.Payload.Signature”
+MySQL : 
+
+An index in SQL is a data structure that improves the speed of data retrieval operations in a database.
+Instead of scanning an entire table, SQL uses indexes to quickly find relevant rows, significantly improving query speed.
+
+Lazy and Eager are fetch strategies in Hibernate/JPA that define when related entities are loaded from the database.
+Lazy fetching means related entities are loaded only when they are accessed,
+Eager fetching means related entities are loaded immediately along with the parent entity.
+Default Fetch Types
+@OneToMany, @ManyToMany → LAZY
+@ManyToOne, @OneToOne → EAGER
+
+all employees who share the second-highest salary.
+SELECT *
+FROM Employees
+WHERE salary = (
+    SELECT DISTINCT salary
+    FROM Employees
+    ORDER BY salary DESC
+    LIMIT 1 OFFSET 1
+);
