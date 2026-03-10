@@ -1,0 +1,344 @@
+Springboot 
+What is the springboot ?
+Sprint boot is a Java-based spring framework used for Rapid Application Development (to build stand-alone microservices). It has extra support of auto-configuration and embedded application servers like tomcat, jetty, etc.
+Features of Spring Boot
+Creates stand-alone spring application with minimal configuration needed.
+It has embedded tomcat, jetty which makes it just code and run the application.
+Provide production-ready features such as metrics, health checks, and externalized configuration.
+Absolutely no requirement for XML configuration.
+
+What it the Use of @Qualifire annotation.
+@Qualifier annotation is used to resolve ambiguity when we have multiple beans of the same type but want to inject a specific one. 
+
+What the purpose of @PropertySource in Spring boot?
+Spring @PropertySource annotation is used to provide properties file to Spring Environment. This annotation is used with @Configuration classes. This feature is available if you are using Java 8 or higher version.
+
+What is the @Profile?
+@Profile helps manage different configurations or beans for different environments like development, testing, and production without changing the code manually.
+
+Difference between @Bean and @Component?
+@Component is used on a class to tell Spring to create an instance of that class automatically.
+@Bean is used on a method inside a @Configuration class to tell Spring to create and manage the object returned by that method.
+
+Volatile Keyword in Java
+volatile keyword indicates that a variable’s value may be changed by multiple threads simultaneously so that variable is stored in the main memory, not the CPU cache.
+
+Transient keyword in Java
+The transient keyword indicate that a particular field of a class should not be serialized. During serialization, those fields are skipped.
+
+What is IoC Container in Spring Boot?
+IoC Container is a framework for implementing automatic dependency injection. It manages object creation and its life-cycle and also injects dependencies into the class.
+
+What is dependency injection in Spring Boot?
+Dependency Injection (DI) in Spring Boot is a design pattern where Spring creates and provides the required objects (dependencies) to a class instead of the class creating them itself.
+Types of Dependency Injection in Spring
+1. Constructor Injection
+Example : 
+
+private final PaymentService paymentService;
+
+@Autowired
+public OrderService(PaymentService paymentService) {
+this.paymentService = paymentService;
+}
+
+2. Setter Injection 
+Example : 
+
+private GreetingService greetingService;
+
+    // Setter Injection
+    @Autowired
+    public void setGreetingService(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+3. Field Injection
+Example : 
+
+@Autowired
+private MyService service;
+
+@SpringBootApplication : 
+@SpringBootApplication is a combined annotation that includes @Configuration, @EnableAutoConfiguration, and @ComponentScan.
+place of convenience what we can use?
+@ComponentScan : 
+It scans all the beans and package declarations when the application initializes.@ComponentScan without arguments tells Spring to scan the current package and all of its sub-packages 
+@Configuratation : 
+@Configuration is a class-level annotation indicating that an object is a source of bean definitions.
+@EnableAutoConfiguration : 
+@EnableAutoConfiguration annotation enables Spring Boot to auto-configure the application context. Therefore, it automatically creates and registers beans based on both the included jar files in the classpath and the beans defined by us.
+For example, when we define the spring-boot-starter-web dependency in our classpath, Spring boot auto-configures Tomcat and Spring MVC. However, this auto-configuration has less precedence in case we define our own configurations
+@RestController : 
+It is a combination of @Controller and @ResponseBody, used for creating a restful controller. It converts the response to JSON or XML. It ensures that data returned by each method will be written straight into the response body instead of returning a template.
+@Controller
+Indicates that a class handles incoming web requests. Typically
+used in traditional Spring MVC applications where the controller
+returns a view name.
+
+How do you handle exceptions in Spring Boot REST APIs?
+We can use @ControllerAdvice and @ExceptionHandler to create
+global exception handlers that handle exceptions and return
+appropriate responses. We can also create custom exception
+classes.
+
+What is bean scope in springboot?
+Bean scope defines the lifecycle and visibility of a bean within the
+container. It 
+tells Spring how many instances of a particular bean should be created and how long they should be available By default, Spring beans are singleton, but other scopes are available for specific use cases.
+
+Bean life cycle?
+A Spring bean goes through several steps: 
+1. First, the container creates the bean object (instantiation), 
+2. Spring injects required dependencies.
+3. After that, initialization happens. 
+4. Once initialized, the bean is ready for use. 
+5. When the application context shuts down, Spring calls @PreDestroy, destroy(), or a custom destroy method to clean up the bean.
+
+Difference between @Component, @Service, and @Repository
+In Spring, @Component, @Service, and @Repository are all stereotypes used to define beans for component scanning and dependency injection.
+Their only difference comes in their purpose i.e. @Service is used to annotated classes that hold business logic in the Service layer and @Repository is used in the Data Access layer.
+
+How does Spring Boot auto-configuration work?
+Spring Boot auto-configuration automatically sets up beans and configurations based on the dependencies present in the class path.
+
+@PathVariable
+@PathVariable extracts values from the URI path of a URL and binds them to method parameters in a controller, capturing dynamic parts of the URL for use as inputs.
+
+@RequestParam
+@RequestParam extracts query parameters from the URL of a request and binds them to method parameters in a controller
+
+@Autowired
+@Autowired injects dependencies into a class, whether it’s constructors, fields, or setter methods.
+
+@Service
+Use @Service to mark a class as a service providing business logic to the application.
+
+
+
+@Repository
+This annotation marks a class as a repository providing data access to the application.
+
+@SpringBootApplication
+This annotation marks the main class of a Spring Boot application, combining the functionality of other key annotations like @Configuration, @EnableAutoConfiguration, and @ComponentScan.
+
+@Configuration
+Use this annotation to indicate that a class contains bean definitions and configuration logic. It turns the class into a source of bean definitions, and methods annotated with @Bean define beans.
+
+@ComponentScan
+This annotation specifies the packages to be scanned for Spring components such as controllers, services, and repositories.
+
+@EnableAutoConfiguration
+Enable automatic configuration of the Spring Boot application based on the classpath and properties in the application.properties or application.yml file.
+
+GET : Used to fetch data from the server.
+POST : Used to create a new resource on the server and Usually sends data in request body.
+PUT : Used to update an existing resource and Usually sends the updated data in request body.
+PATCH: Update only specific fields.  No need to send the full object.  
+DELETE: Used to delete a resource from the server.
+
+
+
+
+Authentication : The process of verifying the identity of a user
+Authorization : The process of determining what an authenticated user is allowed to do
+
+
+
+@ConfigurationProperties Annotation
+Maps a group of related properties into a POJO.
+Example: 
+
+@Component
+@ConfigurationProperties(prefix = "app")
+public class AppProperties {
+private String name;
+private String version;
+
+// Getters and Setters
+}
+
+@Value
+@Value Injects individual values from properties or YAML files.
+Example: 
+
+@Value("${server.port}")
+private int port;
+
+@Valid
+Used to apply validation on a method parameter (commonly in controllers).
+
+@Validated
+Used on a class to validate method-level constraints or with groups for conditional validation.
+
+How to create custom validator 
+
+Custom Validators
+You can create custom constraints using @Constraint.
+Steps to Create a Custom Validator
+1. Define the annotation:
+@Constraint(validatedBy = UsernameValidator.class)
+@Target({ FIELD })
+@Retention(RUNTIME)
+public @interface ValidUsername {
+String message() default "Invalid username";
+Class<?>[] groups() default {};
+Class<? extends Payload>[] payload() default {};
+}
+
+2. Create the validator class:
+
+public class UsernameValidator implements ConstraintValidator<ValidUsername, String>
+{
+
+@Override
+public boolean isValid(String value, ConstraintValidatorContext context) {
+return value != null && value.matches("^[a-zA-Z0-9_]{5,20}$");
+
+}
+}
+
+3. Use the annotation:
+
+public class User {
+@ValidUsername
+private String username;
+}
+
+@Mock Creates a mock object of a dependency
+@InjectMock It automatically injects all @Mock objects into the class 
+@WebMvcTest Used to test only the web layer (controllers) without loading the full context.
+
+@Async and @EnableAsync
+@Async marks a method as asynchronous, allowing it to run in a separate thread. @EnableAsync enables support for asynchronous processing.
+
+@RequestBody handles incoming data from the request body, converting it into a Java object.
+@ResponseBody handles outgoing data, converting a Java object into the response body.
+
+@RequestMapping defines the URL and HTTP method for a controller method.
+
+@Scheduled allows you to run methods at fixed intervals or specific times.
+@Async enables methods to run in a separate thread, allowing
+non-blocking execution.
+
+@ExceptionHandler
+@ExceptionHandler handles exceptions in a controlled and centralized manner, allowing you to define methods that handle specific exceptions and return custom responses when those exceptions occur.
+
+@RestControllerAdvice
+@RestControllerAdvice creates a global exception handler that can manage exceptions across multiple controllers, centralizing exception-handling logic for the entire application.
+
+File upload in Springboot
+Spring Boot provides built-in support for handling file uploads using MultipartFile, and
+allows secure file storage and download through REST APIs.
+
+JPA : JPA (Java Persistence API) provides an easy way to implement repositories without writing much SQL or boilerplate code.
+@Entity marks a Java class as a table in the database.
+
+@Transactional
+It tells Spring that the method (or class) should execute within a transaction, so that all database operations either complete successfully together or roll back in case of an error.
+Manages commit and rollback automatically.
+Private methods  @Transactional does not work
+
+
+
+
+What is NamedQuery and NativeQuery and Difference between?
+NamedQuery is a predefined JPQL query that works with entity names and fields. It’s database-independent, validated at application startup, and preferred for most standard CRUD and entity-based operations.
+@NamedNativeQuery is a predefined SQL query that works directly with database tables and columns. It’s database-dependent, and Validated only at runtime and supports complex SQL features not possible in JPQL, and is useful for performance-optimized or vendor-specific queries.
+
+What is serialVersionUID?
+The serialVersionUID in Java is a unique identifier assigned to a Serializable class. 
+
+
+What is Spring Actuator? What are its advantages?
+An actuator is an additional feature of Spring that helps to monitor and manage our application when you push it to production. These actuators include auditing, health, CPU usage, HTTP hits, and metric gathering, and many more that are automatically applied to your application.
+
+spring-boot-starter-web
+Used to build web applications and RESTful services using Spring MVC.
+spring-boot-starter-data-jpa
+Used to enable Spring Data JPA for data access with relational databases.
+spring-boot-starter-security
+Used to add authentication and authorization to your application.
+
+
+2nd  Highest salary 
+
+avoid duplicate 
+
+SELECT MAX(salary) AS second_highest
+FROM employee
+WHERE salary < (SELECT MAX(salary) FROM employee);
+
+include duplicate 
+SELECT salary
+FROM employee
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1;
+
+
+
+#find the 3rd highest salaried employee using java8
+List<Employee> ep=new ArrayList<>();
+ep.add(new Employee(1L,"Rahul",5000L));
+ep.add(new Employee(2L,"Patel",1000000L));
+ep.add(new Employee(3L,"Raj",1000L));
+ep.add(new Employee(4L,"Ankit",600000L));
+ep.add(new Employee(5L,"Ankit5",8000L));
+ep.add(new Employee(6L,"Ankit6",600000L));
+Set<Long> sal=new HashSet<>();
+Optional<Employee> res = ep.stream().filter(a-> sal.add(a.getSalary()))
+  .sorted(Comparator.comparingLong(Employee::getSalary).reversed()).skip(2).findFirst();
+
+If don't need to remove duplicate salary then 
+Optional<Employee> thirdHighestPaidEmployee = ep.stream()
+                .sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
+                .skip(2).findFirst();
+
+#coding questions
+Input str = "Hi Welcome To the team"
+Output: [Hi=2 Welcome=7 to=2 the=3 team=4]
+
+String str = "Hi Welcome To the team";
+List<String> output = Arrays.stream(str.split("\\s+"))
+                .map(word -> word + "=" + word.length())
+                .collect(Collectors.toList());
+
+#String ab = "Welcome to Persistent"; reverse it so it should look like emocleW ot tnetsisreP using stream api
+String ab = "Welcome to Persistent";
+String resss = Arrays.stream(ab.split(" ")).map(string -> new StringBuilder(string).reverse()).collect(Collectors.joining(" "));
+
+#Using java 8, write a program to find the total number of employees working in each department?
+List<Employee> employees = Arrays.asList(
+            new Employee("Alice", "HR"),
+            new Employee("Bob", "IT"),
+            new Employee("Charlie", "Finance"),
+            new Employee("David", "IT"),
+            new Employee("Eve", "HR"),
+            new Employee("Frank", "Finance"),
+            new Employee("Grace", "IT")
+        );
+
+        Map<String, Long> departmentCounts = employees.stream()
+            .collect(Collectors.groupingBy(
+                Employee::getDepartment,
+                Collectors.counting()
+            ));
+Follow up question, Print the department which have maximum employees
+Optional<Map.Entry<String, Long>> maxDept = employees.stream()
+    .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()))
+    .entrySet().stream()
+    .max(Map.Entry.comparingByValue());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
