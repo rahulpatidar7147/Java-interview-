@@ -5,15 +5,114 @@ Multi-tasking is acheived in 2 ways:
   1. Process Based
   2. Thread Based is Multi-MultiThreading
 
-What is Thread? ⭐️
-  Thread is separate path of execution in program.
-  Threads are, Light weight,They share the same address space. creating thread is simple
-  when compared to process because creating thread requires less resources when compared to
-  process.
+What is Thread? 
+Thread is the smallest unit of processes which executes independently within the program, 
+JVM allows an application multiple threads of execution concurrently.
 
-How to create a Thread? How to acheive Multi-Threading programmatically using Threads?
+Two ways to we can create thread in java
   1. By extending Thread Class
   2. By implementing Runnable Interface
 
-Which approach is better? ⭐️
-  implementing Runnable is a better approach.
+Which approach is better? 
+implementing Runnable is a better approach.
+
+Explain the life-cycle of a Thread?
+A thread can be in any of the five states :
+    New : When the instance of thread is created it will be in New state.
+    Ex : Thread t= new Thread();
+    In the above example t is in new state.
+    The thread is created but not in active state to make it active,
+    we need to call start() method on it.
+
+
+    Runnable state : A thread can be in the runnable state in either of the following
+     two ways :
+     When the start method is invoked or
+     A thread can also be in runnable state after coming back from blocked or sleeping
+     or waiting state.
+
+    Running state : If thread scheduler allocates cpu time, then the thread will be
+    in running state.
+
+    Blocking/ Waiting / sleeping states : In this state the thread can be made temprorily
+    inactive for a short period of time
+    the above state in any of the following ways:
+    1) The thread waits to acquire lock of an object.
+    2) The thread waits for another thread to complete.
+    3) The thread waits for notification of other thread.
+
+    Dead State : A thread is in dead state when thread’s run method execution
+    is complete. It dies automatically when thread’'s run method execution is completed
+    and the thread object will be garbage collected.
+
+What are thread priorities and importance of thread priorities in java?
+  Thread priorities determine which thread to run. Every thread has a priority.
+  A thread inherits priority of its parent thread.
+  By default thread has normal priority of 5.
+  Thread scheduler uses thread priorities to decide when each thread is allowed to run.
+  Thread scheduler runs higher priority threads first.
+
+If two threads have same priority which thread will be executed first ?
+    We are not guaranteed which thread will be executed first when there are threads with equal priorities.
+    It depends on thread scheduler that which thread to execute.
+
+Explain purpose of sleep() method in java?
+    sleep() method causes current running thread to sleep for specified amount of time .
+
+Explain how join method works?
+    A thread can invoke the join() method on other thread to wait for other thread to complete its
+    execution. Assume we have two threads, t1 and t2 threads .
+    A running thread t1 invokes join() on thread t2 then t1 thread will wait in to waiting state until t2 completes.
+    Once t2 completes the execution, t1 will continue.
+
+What is Race Condition and when it occur?⭐️
+A race condition occurs when two or more threads access and modify the same shared resource at the same time. 
+Because of this, the final result can become incorrect, inconsistent, or unpredictable.
+
+What is Synchronization in Java?
+Synchronization in Java is a mechanism used to control access to shared resources in a multithreaded environment
+so that only one thread can access a critical section at a time.
+This helps prevent data inconsistency and race conditions.
+What are the ways to acheive synchronization?
+  Two ways:
+  1.Synchronized methods
+  2.Synchronized blocks
+
+wait(), notify() and notifyAll() in Java
+These methods are used for inter-thread communication in Java
+wait() : release the lock and go into waiting state until another thread calls notify() or notifyAll().
+notify(): Wakes up one waiting thread on the same object monitor.
+notifyAll(): Wakes up all waiting threads on the same object.
+
+What is deadlock? ⭐️
+  	When two or more threads are waiting for each other to release the resource or lock
+  	and get stuck for infinite time, the situation is called deadlock.
+
+What are daemon threads in java?⭐️
+    Daemon threads are threads which run in background.
+    Daemon thread is mostly created by JVM.
+    For example: Garbage collector
+    These are service threads and works for the benefit of other threads.
+    If parent thread is daemon, child thread also inherits daemon nature of thread.
+    JVM will force daemon thread to terminate if all user threads have finished their execution
+    but The user thread is closed by itself.
+
+What is Thread Pool? How can we create Thread Pool in Java?
+    A thread pool manages the pool of threads, it contains a queue that keeps tasks waiting to get executed.
+    java.util.concurrent.Executors provide implementation of java.util.concurrent.
+    Executor interface to create the thread pool in java.
+
+What is Callable?⭐️
+    Callable is an interface with single abstract method call().
+    Java 5 introduced java.util.concurrent.Callable interface in concurrency package
+    that is similar to Runnable interface but it can return any Object and is able to throw Exception.
+    Callable interface use Generic to define the return type of Object.
+
+What is context switching in multithreading ?
+    Context Switching is the process of storing and restoring of CPU state
+    so that Thread execution can be resumed from the same point at a later point of time.
+    Context Switching is the essential feature for multitasking operating system and
+    support for multi-threaded environment.
+
+
+
