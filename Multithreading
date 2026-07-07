@@ -1,0 +1,19 @@
+What is MultiThreading and its Purpose?
+  Its a way to achieve multi-tasking in java.
+
+Multi-tasking is acheived in 2 ways:
+  1. Process Based
+  2. Thread Based is Multi-MultiThreading
+
+What is Thread? ⭐️
+  Thread is separate path of execution in program.
+  Threads are, Light weight,They share the same address space. creating thread is simple
+  when compared to process because creating thread requires less resources when compared to
+  process.
+
+How to create a Thread? How to acheive Multi-Threading programmatically using Threads?
+  1. By extending Thread Class
+  2. By implementing Runnable Interface
+
+Which approach is better? ⭐️
+  implementing Runnable is a better approach.
