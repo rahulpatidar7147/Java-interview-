@@ -1,0 +1,82 @@
+What is Indexing? 
+Indexing in SQL is a technique used to improve the speed of data retrieval from a database by creating a lookup table for faster access. 
+Key Points: 
+Works like a book index to find data quickly. 
+Reduces the time required for SELECT queries. 
+Automatically updated when data is inserted, updated, or deleted.
+Indexes are created on columns frequently used in WHERE, JOIN, and ORDER BY clauses. 
+Types of Indexes: 
+1. Primary Index – Automatically created on Primary Key columns. 
+2. Unique Index – Ensures that values in a column are unique. 
+3.Clustered Index – Sorts data rows physically based on key values (Only one per table). 
+4. Non-Clustered Index – Stores pointers to data rows (Multiple indexes allowed). 
+
+What is Primary Key? 
+A Primary Key is a column or a combination of columns in a table that uniquely identifies each row in that table. It does not allow NULL values and must always contain unique values. 
+Key Features: 
+Uniquely identifies each record 
+Cannot have duplicate values 
+Cannot contain NULL values 
+Only one primary key is allowed per table
+
+
+What is Foreign Key? 
+A Foreign Key is a column or combination of columns in one table that refers to the Primary Key in another table. It is used to create a relationship between two tables and enforce referential integrity. 
+Key Features: 
+Establishes a relationship between two tables 
+Can contain duplicate values 
+Can accept NULL values 
+Helps maintain data consistency
+
+What is UNIQUE Key? 
+A UNIQUE Key is a constraint that ensures all values in a column or combination of columns are distinct across all rows in the table. It prevents duplicate values but allows NULL values (only one NULL value in most databases). 
+Key Features: 
+Ensures uniqueness of each record in the column 
+Allows one NULL value (depending on the database) 
+Multiple UNIQUE keys can be defined in a table 
+Helps maintain data integrity
+
+What is the Difference Between Primary Key and UNIQUE Key?
+
+
+
+
+What is NOT NULL Constraint? 
+The NOT NULL constraint ensures that a column cannot have NULL values. It is used to enforce that every row must have a value in that column. 
+Key Features: 
+Prevents insertion of NULL values 
+Ensures mandatory fields have data 
+Can be applied to one or more columns
+
+
+
+What is the Difference Between DELETE, TRUNCATE, and DROP?
+
+
+
+What is the Difference Between WHERE and HAVING?
+
+
+
+
+
+What is Normalization? 
+Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. It involves dividing large tables into smaller related tables and defining relationships between them. 
+Key Features: 
+Reduces data redundancy
+Improves data consistency 
+Simplifies data maintenance 
+Increases data integrity
+
+What is GROUP BY in SQL?
+Groups data based on one or more columns. It is used to summarize data. Always used after the WHERE clause and before the ORDER BY clause.
+
+What is Stored Procedure ? 
+A Stored Procedure is a group of predefined SQL statements stored in the database that can be executed multiple times.
+Improves code re-usability. 
+Increases performance. 
+Supports input and output parameters. 
+Provides security by hiding SQL code.
+
+How to find the Nth Highest Salary?
+
